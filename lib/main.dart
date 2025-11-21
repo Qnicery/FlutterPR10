@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pr10/features/hotels/screens/add_review_screen.dart';
+import 'package:pr10/features/hotels/screens/faq_screen.dart';
 import 'package:pr10/features/hotels/screens/favorite_screen.dart';
 import 'package:pr10/features/hotels/screens/register_screen.dart';
 import 'package:pr10/features/hotels/stores/add_review_store.dart';
@@ -18,6 +19,7 @@ import 'features/hotels/screens/login_screen.dart';
 import 'features/hotels/screens/profile_screen.dart';
 import 'features/hotels/screens/settings_screen.dart';
 import 'features/hotels/stores/booking_store.dart';
+import 'features/hotels/stores/faq_store.dart';
 import 'features/hotels/stores/hotels_store.dart';
 
 
@@ -32,6 +34,7 @@ void main() {
   getIt.registerLazySingleton(() => ReviewStore());
   getIt.registerLazySingleton(() => AddReviewStore());
   getIt.registerLazySingleton(() => FavoritesStore());
+  getIt.registerLazySingleton(() => FaqStore());
   runApp(const MyApp());
 }
 
@@ -112,6 +115,13 @@ class MyApp extends StatelessWidget {
               name: 'settings',
               path: 'settings',
               builder: (context, state) => const SettingsScreen(),
+              routes: [
+                GoRoute(
+                  name: 'faq',
+                  path: 'faq',
+                  builder: (context, state) => const FaqScreen(),
+                )
+              ]
             ),
           ],
         ),

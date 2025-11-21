@@ -21,6 +21,13 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
+                context.push("/profile/settings/faq");
+              },
+              child: const Text('Помощь'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
                 getIt<AuthStore>().logout();
                 GoRouter.of(context).go('/login');
               },
