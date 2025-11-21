@@ -80,7 +80,7 @@ class BookingScreen extends StatelessWidget {
                     bookingStore.addBooking(booking);
 
                     form.reset();
-                    context.go('/hotels');
+                    context.go('/history');
                   }
                       : null,
                   child: const Text("Подтвердить"),

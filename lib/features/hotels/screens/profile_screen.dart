@@ -44,6 +44,11 @@ class ProfileScreen extends StatelessWidget {
               onPressed: () => context.push('/profile/settings'),
               child: const Text('Настройки'),
             ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => context.push('/favorites'),
+              child: const Text('Избранное'),
+            ),
           ],
         ),
       ),
