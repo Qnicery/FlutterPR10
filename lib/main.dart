@@ -12,7 +12,7 @@ import 'features/hotels/screens/profile_screen.dart';
 import 'features/hotels/screens/settings_screen.dart';
 import 'features/hotels/stores/booking_store.dart';
 import 'features/hotels/stores/hotels_store.dart';
-import 'features/hotels/stores/profile_store.dart';
+
 
 
 final getIt = GetIt.instance;
@@ -21,7 +21,6 @@ void main() {
   getIt.registerLazySingleton(() => AuthStore());
   getIt.registerLazySingleton(() => BookingStore());
   getIt.registerLazySingleton(() => HotelsStore());
-  getIt.registerLazySingleton(() => ProfileStore());
   runApp(const MyApp());
 }
 

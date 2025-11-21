@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pr10/features/hotels/stores/auth_store.dart';
-import 'package:pr10/main.dart';
+import '../../../main.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

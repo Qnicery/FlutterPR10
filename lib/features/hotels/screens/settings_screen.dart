@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../../main.dart';
+import '../stores/auth_store.dart';
 
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +20,11 @@ class SettingsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
-              child: const Text('Удалить аккаунт'),
+              onPressed: () {
+                getIt<AuthStore>().logout();
+                GoRouter.of(context).go('/login');
+              },
+              child: const Text('Выйти'),
             ),
             const SizedBox(height: 10),
           ],

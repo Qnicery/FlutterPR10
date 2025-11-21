@@ -19,7 +19,7 @@ abstract class _AuthStore with Store {
   );
 
   @observable
-  User? currentUser;
+  late User? currentUser = users[0];
 
   @computed
   bool get isLoggedIn => currentUser != null;

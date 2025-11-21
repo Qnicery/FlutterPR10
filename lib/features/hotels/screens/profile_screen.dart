@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../main.dart';
-import '../stores/profile_store.dart';
+import '../stores/auth_store.dart';
 
 
 
@@ -10,7 +10,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final store = getIt<ProfileStore>();
+    final user = getIt<AuthStore>().currentUser;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -30,47 +30,11 @@ class ProfileScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    store.userName,
+                    user?.name ?? '...',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () async {
-                      String? newName;
-                      final result = await showDialog<String>(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                          title: const Text('Введите новое имя'),
-                          content: TextField(
-                            autofocus: true,
-                            decoration: const InputDecoration(hintText: 'Имя'),
-                            onChanged: (value) => newName = value,
-                            onSubmitted: (value) => Navigator.of(context).pop(value),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.of(context).pop(null),
-                              child: const Text('Отмена'),
-                            ),
-                            TextButton(
-                              onPressed: () => Navigator.of(context).pop(newName),
-                              child: const Text('OK'),
-                            ),
-                          ],
-                        ),
-                      );
-                      if (result != null && result.isNotEmpty) {
-                        store.setName(result);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(8),
-                      minimumSize: const Size(40, 40),
-                    ),
-                    child: const Icon(Icons.edit, size: 20),
                   ),
                 ],
               ),
