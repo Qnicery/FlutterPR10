@@ -45,7 +45,7 @@ class HotelCard extends StatelessWidget{
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () => onBook(hotel),
-              child: const Text('Забронировать'),
+              child: const Text('Посмотреть подробнее'),
             ),
           )
         ],

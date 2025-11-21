@@ -1,10 +1,10 @@
 import 'package:mobx/mobx.dart';
 
-part 'hotel_detail_store.g.dart';
+part 'booking_form_store.g.dart';
 
-class HotelDetailStore = _HotelDetailStore with _$HotelDetailStore;
+class BookingFormStore  = _BookingFormStore  with _$BookingFormStore;
 
-abstract class _HotelDetailStore with Store {
+abstract class _BookingFormStore  with Store {
   @observable
   int? guests;
 
@@ -22,5 +22,10 @@ abstract class _HotelDetailStore with Store {
   @action
   void setDate(DateTime value) {
     date = value;
+  }
+  @action
+  void reset() {
+    guests = null;
+    date = null;
   }
 }

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';
 import '../../../main.dart';
-import '../stores/booking_store.dart';
 import '../stores/hotels_store.dart';
-import '../models/booking.dart';
 import '../widgets/city_button.dart';
 import '../widgets/hotel_list.dart';
 
@@ -48,15 +46,8 @@ class HotelsScreen extends StatelessWidget {
             Expanded(
               child: HotelList(
                 hotels: hotelsStore.filteredHotels,
-                onBook: (hotel) async {
-                  final booking = await context.push<Booking>(
-                    '/hotels/detail',
-                    extra: hotel,
-                  );
-
-                  if (booking != null) {
-                    getIt<BookingStore>().addBooking(booking);
-                  }
+                onBook: (hotel) {
+                  context.push('/hotels/detail', extra: hotel);
                 },
               ),
             )

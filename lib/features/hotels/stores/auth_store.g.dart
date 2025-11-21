@@ -43,11 +43,18 @@ mixin _$AuthStore on _AuthStore, Store {
     return super.currentUser;
   }
 
+  bool _currentUserIsInitialized = false;
+
   @override
   set currentUser(User? value) {
-    _$currentUserAtom.reportWrite(value, super.currentUser, () {
-      super.currentUser = value;
-    });
+    _$currentUserAtom.reportWrite(
+      value,
+      _currentUserIsInitialized ? super.currentUser : null,
+      () {
+        super.currentUser = value;
+        _currentUserIsInitialized = true;
+      },
+    );
   }
 
   late final _$_AuthStoreActionController = ActionController(

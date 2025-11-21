@@ -3,8 +3,10 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pr10/features/hotels/screens/register_screen.dart';
 import 'package:pr10/features/hotels/stores/auth_store.dart';
+import 'package:pr10/features/hotels/stores/booking_form_store.dart';
 import '/features/hotels/screens/hotels_screen.dart';
 import 'features/hotels/models/hotel.dart';
+import 'features/hotels/screens/booking_screen.dart';
 import 'features/hotels/screens/history_screen.dart';
 import 'features/hotels/screens/hotel_detail_screen.dart';
 import 'features/hotels/screens/login_screen.dart';
@@ -21,6 +23,7 @@ void main() {
   getIt.registerLazySingleton(() => AuthStore());
   getIt.registerLazySingleton(() => BookingStore());
   getIt.registerLazySingleton(() => HotelsStore());
+  getIt.registerLazySingleton(() => BookingFormStore());
   runApp(const MyApp());
 }
 
@@ -66,6 +69,16 @@ class MyApp extends StatelessWidget {
                 final hotel = state.extra as Hotel;
                 return HotelDetailScreen(hotel: hotel);
               },
+              routes: [
+                GoRoute(
+                  name: 'booking',
+                  path: 'booking',
+                  builder: (context, state) {
+                    final hotel = state.extra as Hotel;
+                    return BookingScreen(hotel: hotel);
+                  },
+                ),
+              ],
             ),
           ],
         ),
