@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pr10/features/hotels/screens/add_review_screen.dart';
 import 'package:pr10/features/hotels/screens/register_screen.dart';
+import 'package:pr10/features/hotels/stores/add_review_store.dart';
 import 'package:pr10/features/hotels/stores/auth_store.dart';
 import 'package:pr10/features/hotels/stores/booking_form_store.dart';
+import 'package:pr10/features/hotels/stores/review_store.dart';
 import '/features/hotels/screens/hotels_screen.dart';
 import 'features/hotels/models/hotel.dart';
 import 'features/hotels/screens/booking_screen.dart';
@@ -24,6 +27,8 @@ void main() {
   getIt.registerLazySingleton(() => BookingStore());
   getIt.registerLazySingleton(() => HotelsStore());
   getIt.registerLazySingleton(() => BookingFormStore());
+  getIt.registerLazySingleton(() => ReviewStore());
+  getIt.registerLazySingleton(() => AddReviewStore());
   runApp(const MyApp());
 }
 
@@ -76,6 +81,14 @@ class MyApp extends StatelessWidget {
                   builder: (context, state) {
                     final hotel = state.extra as Hotel;
                     return BookingScreen(hotel: hotel);
+                  },
+                ),
+                GoRoute(
+                  name: 'review',
+                  path: 'review',
+                  builder: (context, state) {
+                    final hotel = state.extra as Hotel;
+                    return AddReviewScreen(hotel: hotel);
                   },
                 ),
               ],

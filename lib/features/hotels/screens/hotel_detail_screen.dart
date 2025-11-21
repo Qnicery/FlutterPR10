@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../models/hotel.dart';
+import '../widgets/review_list.dart';
 
 class HotelDetailScreen extends StatelessWidget {
   final Hotel hotel;
@@ -56,6 +57,19 @@ class HotelDetailScreen extends StatelessWidget {
               const SizedBox(height: 16),
               Text('Цена: ${hotel.price} ₽ / ночь', style: const TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
+              SizedBox(
+                height: 200,
+                child: ReviewList(hotel: hotel),
+              ),
+              SizedBox(height: 16),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    context.push('/hotels/detail/review', extra: hotel);
+                  },
+                  child: const Text('Оставить отзыв'),
+                ),
+              ),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
